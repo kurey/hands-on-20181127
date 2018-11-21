@@ -415,20 +415,54 @@ export class AppRoutingModule { }
 - ポイント！
 
   - IAMはAWSで提供された様々なサービスに対して「誰が」「どのサービス」に「何ができるのか」の細かな定義を行うことができるサービスです。
-    - よくブログなどで目にしませんか？「アカウント不正アクセスされてAWSの利用明細がすごい額になっていた…」IAMを
+    - よくブログなどで目にしませんか？「アカウント不正アクセスされてAWSの利用明細がすごい額になっていた…」という事例を。
 
 ## Step7
 
-- 以下のプロジェクトをgit cloneしてください。
+- 以下のプロジェクトをgit cloneして下さい。
+  - `git clone https://github.com/kurey/aws-rekognition-sample.git`
+  - `npm install`
+    - ちなみに、AWS SDKのバージョンは`2.351.0`でないとエラーとなるため、あえて最新を指定していません！
 
-- `npm install aws-sdk`
-  - AWS SDK for javascriptをインストールします。
-
-- `ng g service services/aws`
-  - AWS SDKを利用するためのサービスを作成します。
-  - 以下の様に編集してください。
+- 以下のファイルを編集して下さい。
+  - `src/app/services/aws/aws.service.ts`(initializeAWS関数)
+  - `アクセスキー`(28行目)、`シークレットキー`(29行目)を[Step6](#Step6)で各自で作成したIAMユーザのアクセスキーとシークレットキーに変更して下さい。
 
 ```typescript
+　〜省略〜
+  /**
+   * AWSの設定
+   */
+  initializeAWS() {
+    /**
+     * ！！注意！！
+     * アクセスキー、シークレットキーは本来JSに直接書くのは大変危険です。
+     * Rekognitionを利用する場合、サーバサイド側で連携するか
+     * CognitoのUserPoolsを利用して認証を行うのがベターです。
+     * 
+     * くれぐれもJS側でアクセスキー、シークレットキーを管理しない様に注意しましょう！
+     */
+    AWS.config.update({
+→     accessKeyId: 'アクセスキー',
+→     secretAccessKey: 'シークレットキー',
+      region: 'ap-northeast-1',
+    });
+
+    // RekognitionのAPIバージョン
+    AWS.config.apiVersions = {
+      rekognition: '2016-06-27'
+    };
+  }
+　〜省略〜
 ```
 
+- `ng serve --open`
+  - `http://localhost:4200/detect/labels`
+  - ブラウザ上で画像を選択すると、画像認識の結果が表示されます。
+
 ## 余った人向け
+
+AWS Rekognitionには色々な画像認識が可能です。
+例えば、テキスト検出や顔認識など。
+
+時間が余った人はAWS Rekognitionにリクエストを変更して色々な画像認識を試してみよう！
