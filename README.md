@@ -433,7 +433,7 @@ export class AppRoutingModule { }
   ![IAM-step3](./IAM-step3.png)
 
 - `既存ポリシーを直接アタッチ`を選択し、検索フォームで`rekognition`を検索
-- `AmazonRekognitionReadOnlyAccess`のみ選択し、次のステップへ
+  - `AmazonRekognitionReadOnlyAccess`のみ選択し、次のステップへ
   - 検索すると3つHitしますので、`説明`のところに`Access to all Read rekognition APIs`と書いてあるやつを選択
 
   ![IAM-step4](./IAM-step4.png)
@@ -505,12 +505,13 @@ export class AppRoutingModule { }
 - `ng serve --open`
   - `http://localhost:4200/detect/labels`
   - ブラウザ上で画像を選択すると、画像認識の結果が表示されます。
+    ![認識結果](./認識結果.png)
 
 ## 余った人向け
 
-AWS Rekognitionには色々な画像認識が可能です。
-例えば、テキスト検出や顔認識など。
+AWS Rekognitionには色々な画像認識が可能です。更には動画分析もできます。
 
-時間が余った人はAWS Rekognitionにリクエストを変更して色々な画像認識を試してみよう！
+- 時間が余った人はオンライン上でAWS Rekognitionの[デモ](https://ap-northeast-1.console.aws.amazon.com/rekognition/home?region=ap-northeast-1#/face-detection)を試すことができますので、色々遊んでみましょう！
 
-- [https://ap-northeast-1.console.aws.amazon.com/rekognition/home?region=ap-northeast-1#/face-detection]
+- もしくは、今回利用したサンプルアプリをもとにAPIリクエストを変更してみるのもいいでしょう
+  - `app/src/services/aws/aws.service.ts`にテキスト検出のリクエストが行える関数も用意してあります(動作確認してないですが笑)
