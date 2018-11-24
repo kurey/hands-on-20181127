@@ -412,10 +412,56 @@ export class AppRoutingModule { }
 
 - AWSの`IAM`を使って今回利用する`Rekognition`に対して最低限の操作ができるユーザを作りましょう。
 
+- ブラウザから[マネジメントコンソール](https://ap-northeast-1.console.aws.amazon.com/console/home?region=ap-northeast-1)を開き、メールアドレスとパスワードを入力し、ログインしましょう
+
+  ![ログイン](./ログイン.png)
+
+- 検索フォームに`IAM`と入力し、`IAM`を選択します
+
+  ![マネジメントコンソール](./マネジメントコンソール.png)
+
+- メニューから`ユーザー`を選択します
+
+  ![IAM-step1](./IAM-step1.png)
+
+- `ユーザーを追加`を選択します
+
+  ![IAM-step2](./IAM-step2.png)
+
+- `ユーザ名`を入力し、`アクセスの種類`の`プログラムによるアクセス`のみチェックし、次のステップへ
+
+  ![IAM-step3](./IAM-step3.png)
+
+- `既存ポリシーを直接アタッチ`を選択し、検索フォームで`rekognition`を検索
+- `AmazonRekognitionReadOnlyAccess`のみ選択し、次のステップへ
+  - 検索すると3つHitしますので、`説明`のところに`Access to all Read rekognition APIs`と書いてあるやつを選択
+
+  ![IAM-step4](./IAM-step4.png)
+
+- 何も入力せず、次のステップへ
+
+  ![IAM-step5](./IAM-step5.png)
+
+- 作成される内容を確認し、問題なければ`ユーザーの作成`を選択
+  - 不安だと思う方は周りのスタッフに声をかけて確認してもらってください！
+
+  ![IAM-step6](./IAM-step6.png)
+
+- `.csvのダウンロード`から認証情報をダウンロードしてください
+
+  ![IAM-step7](./IAM-step7.png)
+
+- ここまででIAMユーザの作成は完了です
+
+
 - ポイント！
 
-  - IAMはAWSで提供された様々なサービスに対して「誰が」「どのサービス」に「何ができるのか」の細かな定義を行うことができるサービスです。
+  - IAMはAWSで提供された様々なサービスに対して「誰が」「どのサービス」に「何ができるのか」の細かな定義を行うことができるサービスです
     - よくブログなどで目にしませんか？「アカウント不正アクセスされてAWSの利用明細がすごい額になっていた…」という事例を。
+    - 今回作成したユーザは`Rekognition`に対して`読取専用`の権限だけ付与しましたが、不要になったユーザはできる限り削除することをオススメします
+    - Rekognitionの料金は以下の通り(2018年11月22日時点)
+      ![rekognition-price1](./rekognition-price1.png)
+      ![rekognition-price2](./rekognition-price2.png)
 
 ## Step7
 
@@ -466,3 +512,5 @@ AWS Rekognitionには色々な画像認識が可能です。
 例えば、テキスト検出や顔認識など。
 
 時間が余った人はAWS Rekognitionにリクエストを変更して色々な画像認識を試してみよう！
+
+- [https://ap-northeast-1.console.aws.amazon.com/rekognition/home?region=ap-northeast-1#/face-detection]
