@@ -15,7 +15,7 @@
 ### AWS CLIをインストール
 
 - Windowsの方
-  - [AWS CLI(64bit)](https://s3.amazonaws.com/aws-cli/AWSCLI64.msi)をインストール
+  - [AWS CLI(64bit)](https://s3.amazonaws.com/aws-cli/AWSCLI64.msi)をインストール
     - 32bitの方は[こちら](https://s3.amazonaws.com/aws-cli/AWSCLI32.msi)
   - `aws help`でヘルプが表示されればOK!
 
@@ -71,7 +71,7 @@
 
 ### コンポーネントを作って表示してみよう
 
-- `ng g component frameworks`
+- `ng g component frameworks`
   - `app/frameworks`が作られます。
 
 - `app.component.html`を以下のように書き換えて保存してください。
@@ -104,7 +104,7 @@ export class FrameWorksComponent implements OnInit {
   title: string = 'Hello Angular!';
 
   /** フレームワークリスト */
-  frameworks: Array<string> = [
+  frameworks: Array<string> = [
     'Angular',
     'React',
     'Vue',
