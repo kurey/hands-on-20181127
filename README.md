@@ -98,7 +98,7 @@ import { Component, OnInit } from '@angular/core';
   /** 利用するSCSSの設定 */
   styleUrls: ['./frameworks.component.scss']
 })
-export class FrameWorksComponent implements OnInit {
+export class FrameworksComponent implements OnInit {
 
   /** タイトル */
   title: string = 'Hello Angular!';
@@ -283,7 +283,7 @@ import { Angular, React, Vue, Framework, FrameworkId } from './framework.model';
   templateUrl: './frameworks.component.html',
   styleUrls: ['./frameworks.component.scss']
 })
-export class FrameWorksComponent implements OnInit {
+export class FrameworksComponent implements OnInit {
 
   /** タイトル */
   title: string = 'Hello Angular!';
